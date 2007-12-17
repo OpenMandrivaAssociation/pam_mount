@@ -23,7 +23,6 @@ Patch:		pam_mount-0.10.0-scsupport.patch
 Requires:	opensc >= 0.10.0-5mdk
 BuildRequires:	pam-devel, zlib-devel
 BuildRequires:	glib2-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Pam_mount is a PAM module that allows dynamic remote volume mounting.
