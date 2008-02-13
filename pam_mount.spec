@@ -16,6 +16,7 @@ BuildRequires:	pam-devel
 BuildRequires:	zlib-devel
 BuildRequires:	glib2-devel
 BuildRequires:	libHX-devel
+BuildRequires:	libxml2-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
