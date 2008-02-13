@@ -1,28 +1,21 @@
-%define	name	pam_mount
-%define	version	0.17
-%define	release	%mkrel 1
-#arg, still no libtool-1.5
-#%define	__libtoolize	/bin/true
-#%define __cputoolize /bin/true
-
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		pam_mount
+Version:	0.32
+Release:	%mkrel 1
 Summary:	Pluggable Authentication Module for dynamic mounting of remote volumes
 Summary(pt_BR):	Módulo de autenticação PAM para montagem dinâmica de volumes remotes
 Summary(es):	Pluggable authentication module for dynamic mouting of remote volumes
-License:	GPL
+License:	GPLv2+ and LGPLv2+
 Group:		Networking/Other
 URL:		http://pam-mount.sourceforge.net/
 Source0:	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 # patch to use pkcs15-crypt to decrypt a filesystem key file
 # based on http://keitin.net/jarpatus/projects/usbtoken/index_eng.shtml
-Patch:		pam_mount-0.10.0-scsupport.patch
-# support for reading PIN from stdin was added to this specific
-# release (0.10.0-5mdk) and we need it due to the patch above
-Requires:	opensc >= 0.10.0-5mdk
-BuildRequires:	pam-devel, zlib-devel
+Patch:		pam_mount-0.32-scsupport.patch
+Requires:	opensc
+BuildRequires:	pam-devel
+BuildRequires:	zlib-devel
 BuildRequires:	glib2-devel
+BuildRequires:	libHX-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
@@ -43,38 +36,48 @@ volume au login. Il est utilisé afin de permettre aux utilisateurs de
 monter leur répertoires privés sur des serveurs Samba/NT/Netware au
 cours d'une session Unix.
 
-%package devel
-Summary: Development files for pam_mount
-Requires: pam_mount
-Group: Networking/Other
-
-%description devel
-Use pam_mount-devel if you need to, for development purpose.
-
 %prep
 %setup -q
 %patch -p1 -b .sc
 
 %build
-%configure
-#JMD: you need this if zlib-devel is installed.. weird!
-#This is due to a change in source on March 10 2004
-perl -pi -e "s|-lcrypto|-lcrypto -lz|" src/Makefile
+%configure2_5x
 %make moduledir=/%{_lib}/security
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p %{buildroot}/sbin
-mkdir -p %{buildroot}%{_bindir}
-mkdir -p %{buildroot}%{_sbindir}
-mkdir -p %{buildroot}%{_sysconfdir}
-mkdir -p %{buildroot}/%{_lib}/security
-mkdir -p %{buildroot}/%{_includedir}/pam_mount
+rm -rf %{buildroot}
 %makeinstall_std moduledir=/%{_lib}/security
-install -m0600 config/pam_mount.conf -D $RPM_BUILD_ROOT%{_sysconfdir}/security/pam_mount.conf
+install -m0600 config/pam_mount.conf.xml -D %{buildroot}%{_sysconfdir}/security/pam_mount.conf.xml
+install -m0755 scripts/convert_pam_mount_conf.pl %{buildroot}%{_sbindir}
 
 %clean
 rm -rf %{buildroot}
+
+%pre
+#
+# On upgrade, when pmt.conf exists and pmt.conf.xml does not,
+# create pmt.conf.xml with size 0 to signal conversion.
+#
+f="%{_sysconfdir}/security/pam_mount.conf";
+if [ "$1" -eq 2 -a -e "$f" ]; then
+	touch -a "$f.xml";
+fi;
+
+%post
+#
+# pmt.conf.xml always exists now.
+#
+f="%{_sysconfdir}/security/pam_mount.conf";
+if [ -e "$f" -a ! -s "$f.xml" ]; then
+	"%{_sbindir}ls /convert_pam_mount_conf.pl" \
+		<"$f" >"$f.xml";
+	echo -en "Configuration migration from pam_mount.conf to pam_mount.conf.xml ";
+	if [ "$?" -eq 0 ]; then
+		echo "successful - also please check any ~/.pam_mount.conf files.";
+	else
+		echo "failed";
+	fi;
+fi;
 
 %files 
 %defattr(0644,root,root,0755)
@@ -82,14 +85,8 @@ rm -rf %{buildroot}
 %attr(0755,root,root) %{_bindir}/*
 %attr(0755,root,root) %{_sbindir}/*
 %attr(0755,root,root) /sbin/*
-%config(noreplace) %{_sysconfdir}/security/%{name}.conf
-%doc AUTHORS ChangeLog COPYING FAQ INSTALL NEWS README TODO
+%config(noreplace) %{_sysconfdir}/security/%{name}.conf.xml
+%doc doc/bugs.txt doc/changelog.txt doc/faq.txt doc/todo.txt doc/pam_mount.txt
 %{_mandir}/man8/*
 %{_mandir}/man1/mkehd.1*
-
-%files devel
-%defattr(0644,root,root,0755)
-/%{_lib}/security/*a
-%{_includedir}/*
-
 
