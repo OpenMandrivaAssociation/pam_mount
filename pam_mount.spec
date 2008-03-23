@@ -1,6 +1,6 @@
 Name:		pam_mount
 Version:	0.33
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	Pluggable Authentication Module for dynamic mounting of remote volumes
 Summary(pt_BR):	Módulo de autenticação PAM para montagem dinâmica de volumes remotes
 Summary(es):	Pluggable authentication module for dynamic mouting of remote volumes
@@ -19,6 +19,7 @@ BuildRequires:	libHX-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	openssl-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Obsoletes:	pam_mount-devel
 
 %description
 Pam_mount is a PAM module that allows dynamic remote volume mounting.
