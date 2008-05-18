@@ -91,5 +91,4 @@ fi;
 %config(noreplace) %{_sysconfdir}/security/%{name}.conf.xml
 %doc doc/bugs.txt doc/changelog.txt doc/faq.txt doc/todo.txt doc/pam_mount.txt
 %{_mandir}/man8/*
-%{_mandir}/man1/mkehd.1*
-
+%{_mandir}/man1/*
