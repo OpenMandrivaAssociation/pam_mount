@@ -15,7 +15,7 @@ Requires:	opensc
 BuildRequires:	pam-devel
 BuildRequires:	zlib-devel
 BuildRequires:	glib2-devel
-BuildRequires:	libHX-devel
+BuildRequires:	libHX-devel >= 1.15
 BuildRequires:	libxml2-devel
 BuildRequires:	openssl-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
