@@ -1,5 +1,5 @@
 Name:		pam_mount
-Version:	0.37
+Version:	0.41
 Release:	%mkrel 1
 Summary:	Pluggable Authentication Module for dynamic mounting of remote volumes
 Summary(pt_BR):	Módulo de autenticação PAM para montagem dinâmica de volumes remotes
@@ -15,7 +15,7 @@ Requires:	opensc
 BuildRequires:	pam-devel
 BuildRequires:	zlib-devel
 BuildRequires:	glib2-devel
-BuildRequires:	libHX-devel >= 1.15
+BuildRequires:	libHX-devel >= 1.18
 BuildRequires:	libxml2-devel
 BuildRequires:	openssl-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -92,3 +92,4 @@ fi;
 %doc doc/bugs.txt doc/changelog.txt doc/faq.txt doc/todo.txt doc/pam_mount.txt
 %{_mandir}/man8/*
 %{_mandir}/man1/*
+%{_mandir}/man5/pam_mount.conf.5*
