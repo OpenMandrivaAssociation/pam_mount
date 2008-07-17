@@ -1,5 +1,5 @@
 Name:		pam_mount
-Version:	0.41
+Version:	0.43
 Release:	%mkrel 1
 Summary:	Pluggable Authentication Module for dynamic mounting of remote volumes
 Summary(pt_BR):	Módulo de autenticação PAM para montagem dinâmica de volumes remotes
@@ -7,7 +7,7 @@ Summary(es):	Pluggable authentication module for dynamic mouting of remote volum
 License:	GPLv2+ and LGPLv2+
 Group:		Networking/Other
 URL:		http://pam-mount.sourceforge.net/
-Source0:	http://prdownloads.sourceforge.net/pam-mount/%{name}-%{version}.tar.bz2
+Source0:	http://prdownloads.sourceforge.net/pam-mount/%{name}-%{version}.tar.lzma
 # patch to use pkcs15-crypt to decrypt a filesystem key file
 # based on http://keitin.net/jarpatus/projects/usbtoken/index_eng.shtml
 Patch:		pam_mount-0.32-scsupport.patch
