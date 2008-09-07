@@ -1,6 +1,6 @@
 Name:		pam_mount
 Version:	0.47
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	Pluggable Authentication Module for dynamic mounting of remote volumes
 Summary(pt_BR):	Módulo de autenticação PAM para montagem dinâmica de volumes remotes
 Summary(es):	Pluggable authentication module for dynamic mouting of remote volumes
@@ -11,11 +11,13 @@ Source0:	http://prdownloads.sourceforge.net/pam-mount/%{name}-%{version}.tar.lzm
 # patch to use pkcs15-crypt to decrypt a filesystem key file
 # based on http://keitin.net/jarpatus/projects/usbtoken/index_eng.shtml
 Patch:		pam_mount-0.32-scsupport.patch
+# patch1 from git, requires libHX 1.25
+Patch1:		pam_mount-0.47-libHX-1.25.patch
 Requires:	opensc
 BuildRequires:	pam-devel
 BuildRequires:	zlib-devel
 BuildRequires:	glib2-devel
-BuildRequires:	libHX-devel >= 1.18
+BuildRequires:	libHX-devel >= 1.25
 BuildRequires:	libxml2-devel
 BuildRequires:	openssl-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -42,6 +44,7 @@ cours d'une session Unix.
 %prep
 %setup -q
 %patch -p1 -b .sc
+#patch1 -p1
 
 %build
 %configure2_5x
