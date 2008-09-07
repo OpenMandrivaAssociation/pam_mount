@@ -44,7 +44,7 @@ cours d'une session Unix.
 %prep
 %setup -q
 %patch -p1 -b .sc
-#patch1 -p1
+%patch1 -p1
 
 %build
 %configure2_5x
