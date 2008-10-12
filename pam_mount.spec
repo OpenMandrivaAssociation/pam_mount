@@ -1,5 +1,5 @@
 Name:		pam_mount
-Version:	0.48
+Version:	0.49
 Release:	%mkrel 1
 Summary:	Pluggable Authentication Module for dynamic mounting of remote volumes
 Summary(pt_BR):	Módulo de autenticação PAM para montagem dinâmica de volumes remotes
