@@ -1,5 +1,5 @@
 Name:		pam_mount
-Version:	0.49
+Version:	1.1
 Release:	%mkrel 1
 Summary:	Pluggable Authentication Module for dynamic mounting of remote volumes
 Summary(pt_BR):	Módulo de autenticação PAM para montagem dinâmica de volumes remotes
@@ -8,10 +8,6 @@ License:	GPLv2+ and LGPLv2+
 Group:		Networking/Other
 URL:		http://pam-mount.sourceforge.net/
 Source0:	http://prdownloads.sourceforge.net/pam-mount/%{name}-%{version}.tar.lzma
-# patch to use pkcs15-crypt to decrypt a filesystem key file
-# based on http://keitin.net/jarpatus/projects/usbtoken/index_eng.shtml
-Patch:		pam_mount-0.48-scsupport.patch
-Patch1:		pam_mount-git-convert_pam_mount_conf-lsof_callback.patch
 Requires:	opensc
 BuildRequires:	pam-devel
 BuildRequires:	zlib-devel
@@ -42,8 +38,6 @@ cours d'une session Unix.
 
 %prep
 %setup -q
-%patch -p1 -b .sc
-%patch1 -p1
 
 %build
 %configure2_5x
@@ -53,36 +47,9 @@ cours d'une session Unix.
 rm -rf %{buildroot}
 %makeinstall_std moduledir=/%{_lib}/security
 install -m0600 config/pam_mount.conf.xml -D %{buildroot}%{_sysconfdir}/security/pam_mount.conf.xml
-install -m0755 scripts/convert_pam_mount_conf.pl %{buildroot}%{_sbindir}
 
 %clean
 rm -rf %{buildroot}
-
-%pre
-#
-# On upgrade, when pmt.conf exists and pmt.conf.xml does not,
-# create pmt.conf.xml with size 0 to signal conversion.
-#
-f="%{_sysconfdir}/security/pam_mount.conf";
-if [ "$1" -eq 2 -a -e "$f" ]; then
-	touch -a "$f.xml";
-fi;
-
-%post
-#
-# pmt.conf.xml always exists now.
-#
-f="%{_sysconfdir}/security/pam_mount.conf";
-if [ -e "$f" -a ! -s "$f.xml" ]; then
-	"%{_sbindir}ls /convert_pam_mount_conf.pl" \
-		<"$f" >"$f.xml";
-	echo -en "Configuration migration from pam_mount.conf to pam_mount.conf.xml ";
-	if [ "$?" -eq 0 ]; then
-		echo "successful - also please check any ~/.pam_mount.conf files.";
-	else
-		echo "failed";
-	fi;
-fi;
 
 %files 
 %defattr(0644,root,root,0755)
