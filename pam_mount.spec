@@ -1,5 +1,5 @@
 Name:		pam_mount
-Version:	1.3
+Version:	1.5
 Release:	%mkrel 1
 Summary:	Pluggable Authentication Module for dynamic mounting of remote volumes
 Summary(pt_BR):	Módulo de autenticação PAM para montagem dinâmica de volumes remotes
@@ -7,7 +7,7 @@ Summary(es):	Pluggable authentication module for dynamic mouting of remote volum
 License:	GPLv2+ and LGPLv2+
 Group:		Networking/Other
 URL:		http://pam-mount.sourceforge.net/
-Source0:	http://prdownloads.sourceforge.net/pam-mount/%{name}-%{version}.tar.lzma
+Source0:	http://prdownloads.sourceforge.net/pam-mount/%{name}-%{version}.tar.bz2
 Requires:	opensc
 BuildRequires:	pam-devel
 BuildRequires:	zlib-devel
@@ -15,8 +15,8 @@ BuildRequires:	glib2-devel
 BuildRequires:	libHX-devel >= 1.25
 BuildRequires:	libxml2-devel
 BuildRequires:	openssl-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Obsoletes:	pam_mount-devel
+BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 Pam_mount is a PAM module that allows dynamic remote volume mounting.
@@ -52,13 +52,13 @@ install -m0600 config/pam_mount.conf.xml -D %{buildroot}%{_sysconfdir}/security/
 rm -rf %{buildroot}
 
 %files 
-%defattr(0644,root,root,0755)
-/%{_lib}/security/pam_mount*.so
-%attr(0755,root,root) %{_bindir}/*
-%attr(0755,root,root) %{_sbindir}/*
-%attr(0755,root,root) /sbin/*
-%config(noreplace) %{_sysconfdir}/security/%{name}.conf.xml
+%defattr(-,root,root)
 %doc doc/bugs.txt doc/changelog.txt doc/faq.txt doc/todo.txt doc/pam_mount.txt
+/%{_lib}/security/pam_mount*.so
+%{_bindir}/*
+%{_sbindir}/*
+/sbin/*
+%config(noreplace) %{_sysconfdir}/security/%{name}.conf.xml
 %{_mandir}/man8/*
 %{_mandir}/man1/*
 %{_mandir}/man5/pam_mount.conf.5*
