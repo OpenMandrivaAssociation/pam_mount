@@ -12,7 +12,7 @@ Requires:	opensc
 BuildRequires:	pam-devel
 BuildRequires:	zlib-devel
 BuildRequires:	glib2-devel
-BuildRequires:	libHX-devel >= 1.27
+BuildRequires:	libHX-devel >= 2.7
 BuildRequires:	libxml2-devel
 BuildRequires:	openssl-devel
 Obsoletes:	pam_mount-devel
