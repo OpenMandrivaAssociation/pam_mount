@@ -1,5 +1,5 @@
 Name:		pam_mount
-Version:	1.36
+Version:	2.0
 Release:	%mkrel 1
 Summary:	Pluggable Authentication Module for dynamic mounting of remote volumes
 Summary(pt_BR):	Módulo de autenticação PAM para montagem dinâmica de volumes remotes
@@ -7,7 +7,7 @@ Summary(es):	Pluggable authentication module for dynamic mouting of remote volum
 License:	GPLv2+ and LGPLv2+
 Group:		Networking/Other
 URL:		http://pam-mount.sourceforge.net/
-Source0:	http://prdownloads.sourceforge.net/pam-mount/%{name}-%{version}.tar.bz2
+Source0:	http://prdownloads.sourceforge.net/pam-mount/%{name}-%{version}.tar.xz
 Requires:	opensc
 BuildRequires:	pam-devel
 BuildRequires:	zlib-devel
@@ -15,6 +15,7 @@ BuildRequires:	glib2-devel
 BuildRequires:	libHX-devel >= 2.7
 BuildRequires:	libxml2-devel
 BuildRequires:	openssl-devel
+BuildRequires:	libcryptsetup-devel
 Obsoletes:	pam_mount-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
