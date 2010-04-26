@@ -15,7 +15,7 @@ BuildRequires:	glib2-devel
 BuildRequires:	libHX-devel >= 2.7
 BuildRequires:	libxml2-devel
 BuildRequires:	openssl-devel
-BuildRequires:	libcryptsetup-devel
+BuildRequires:	cryptsetup-devel
 Obsoletes:	pam_mount-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
