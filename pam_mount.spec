@@ -1,5 +1,5 @@
 Name:		pam_mount
-Version:	2.5
+Version:	2.6
 Release:	%mkrel 1
 Summary:	Pluggable Authentication Module for dynamic mounting of remote volumes
 Summary(pt_BR):	Módulo de autenticação PAM para montagem dinâmica de volumes remotes
@@ -57,10 +57,23 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc doc/bugs.txt doc/changelog.txt doc/faq.txt doc/todo.txt doc/pam_mount.txt
 /%{_lib}/security/pam_mount*.so
-%{_bindir}/*
-%{_sbindir}/*
-/sbin/*
+%{_sbindir}/pmt-ehd
+%{_sbindir}/pmvarrun
+/sbin/mount.crypt
+/sbin/mount.crypto_LUKS
+/sbin/mount.crypt_LUKS
+/sbin/mount.encfs13
+/sbin/umount.crypt
+/sbin/umount.crypt_LUKS
+/sbin/umount.crypto_LUKS
 %config(noreplace) %{_sysconfdir}/security/%{name}.conf.xml
-%{_mandir}/man8/*
-%{_mandir}/man1/*
+%{_mandir}/man8/pam_mount.8*
+%{_mandir}/man8/pmt-ehd.8*
+%{_mandir}/man8/pmvarrun.8*
+%{_mandir}/man8/mount.crypt.8*
+%{_mandir}/man8/mount.crypt_LUKS.8*
+%{_mandir}/man8/mount.crypto_LUKS.8*
+%{_mandir}/man8/umount.crypt.8*
+%{_mandir}/man8/umount.crypt_LUKS.8*
+%{_mandir}/man8/umount.crypto_LUKS.8*
 %{_mandir}/man5/pam_mount.conf.5*
