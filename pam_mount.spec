@@ -1,5 +1,5 @@
 Name:		pam_mount
-Version:	2.8
+Version:	2.9
 Release:	%mkrel 1
 Summary:	Pluggable Authentication Module for dynamic mounting of remote volumes
 Summary(pt_BR):	Módulo de autenticação PAM para montagem dinâmica de volumes remotes
@@ -13,8 +13,8 @@ Requires:	opensc
 BuildRequires:	pam-devel
 BuildRequires:	zlib-devel
 BuildRequires:	glib2-devel
-BuildRequires:	libHX-devel >= 2.7
-BuildRequires:	libxml2-devel
+BuildRequires:	libHX-devel >= 3.6
+BuildRequires:	libxml2-devel >= 2.6
 BuildRequires:	openssl-devel
 BuildRequires:	cryptsetup-devel >= 1.1.2
 Obsoletes:	pam_mount-devel
