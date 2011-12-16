@@ -63,7 +63,7 @@ rm -rf %{buildroot}
 /sbin/mount.crypt
 /sbin/mount.crypto_LUKS
 /sbin/mount.crypt_LUKS
-/sbin/mount.encfs13
+#/sbin/mount.encfs13
 /sbin/umount.crypt
 /sbin/umount.crypt_LUKS
 /sbin/umount.crypto_LUKS
