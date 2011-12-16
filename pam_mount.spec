@@ -1,3 +1,5 @@
+%define libcryptomount %mklibname cryptomount 0
+%define cryptomountdevel %mklibname cryptomount -d
 Name:		pam_mount
 Version:	2.13
 Release:	%mkrel 1
@@ -39,6 +41,23 @@ volume au login. Il est utilisé afin de permettre aux utilisateurs de
 monter leur répertoires privés sur des serveurs Samba/NT/Netware au
 cours d'une session Unix.
 
+%package -n %libcryptomount
+Summary:	Library for mounting crypto images and handle key files
+License:	LGPL
+
+%description -n %libcryptomount
+Library for mounting crypto images and handle key files.
+
+%package -n %cryptomountdevel
+Summary:	Development files for %libcryptomount
+License:	LGPL
+Requires:	%libcryptomount = %{EVRD}
+Provides:	libcryptomount-devel = %{EVRD}
+
+%description -n %cryptomountdevel
+Development files for %libcryptomount - library for mounting crypto images
+and handle key files.
+
 %prep
 %setup -q
 
@@ -78,3 +97,11 @@ rm -rf %{buildroot}
 %{_mandir}/man8/umount.crypt_LUKS.8*
 %{_mandir}/man8/umount.crypto_LUKS.8*
 %{_mandir}/man5/pam_mount.conf.5*
+
+%files  -n %libcryptomount
+%{_libdir}/libcryptomount.so.*
+
+%files  -n %cryptomountdevel
+%{_libdir}/libcryptomount.so
+%{_libdir}/pkgconfig/libcryptmount.pc
+%{_includedir}/libcryptomount.h
