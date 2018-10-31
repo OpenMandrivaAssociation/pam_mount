@@ -5,7 +5,7 @@
 Summary:	Pluggable Authentication Module for dynamic mounting of remote volumes
 Name:		pam_mount
 Version:	2.13
-Release:	10
+Release:	11
 License:	GPLv2+ and LGPLv2+
 Group:		Networking/Other
 Url:		http://pam-mount.sourceforge.net/
