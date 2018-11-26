@@ -4,13 +4,12 @@
 
 Summary:	Pluggable Authentication Module for dynamic mounting of remote volumes
 Name:		pam_mount
-Version:	2.13
-Release:	11
+Version:	2.16
+Release:	1
 License:	GPLv2+ and LGPLv2+
 Group:		Networking/Other
 Url:		http://pam-mount.sourceforge.net/
 Source0:	http://prdownloads.sourceforge.net/pam-mount/%{name}-%{version}.tar.xz
-Source1:	http://prdownloads.sourceforge.net/pam-mount/%{name}-%{version}.tar.xz.asc
 BuildRequires:	pam-devel
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(libcryptsetup)
@@ -44,14 +43,14 @@ Development files for %{libname} - library for mounting crypto images
 and handle key files.
 
 %prep
-%setup -q
+%autosetup -p1
 
 %build
-%configure2_5x
-%make moduledir=%{_libdir}/security
+%configure
+%make_build moduledir=%{_libdir}/security
 
 %install
-%makeinstall_std moduledir=%{_libdir}/security
+%make_install moduledir=%{_libdir}/security
 install -m0600 config/pam_mount.conf.xml -D %{buildroot}%{_sysconfdir}/security/pam_mount.conf.xml
 
 %files 
