@@ -54,7 +54,7 @@ and handle key files.
 install -m0600 config/pam_mount.conf.xml -D %{buildroot}%{_sysconfdir}/security/pam_mount.conf.xml
 
 %files 
-%doc doc/bugs.txt doc/changelog.txt doc/faq.txt doc/todo.txt doc/pam_mount.txt
+%doc doc/bugs.txt doc/faq.txt doc/todo.txt doc/pam_mount.txt
 %{_libdir}/security/pam_mount*.so
 %{_sbindir}/pmt-ehd
 %{_sbindir}/pmvarrun
