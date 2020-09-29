@@ -5,7 +5,7 @@
 Summary:	Pluggable Authentication Module for dynamic mounting of remote volumes
 Name:		pam_mount
 Version:	2.16
-Release:	1
+Release:	2
 License:	GPLv2+ and LGPLv2+
 Group:		Networking/Other
 Url:		http://pam-mount.sourceforge.net/
@@ -83,4 +83,3 @@ install -m0600 config/pam_mount.conf.xml -D %{buildroot}%{_sysconfdir}/security/
 %{_libdir}/libcryptmount.so
 %{_libdir}/pkgconfig/libcryptmount.pc
 %{_includedir}/libcryptmount.h
-
