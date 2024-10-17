@@ -8,7 +8,7 @@ Version:	2.16
 Release:	4
 License:	GPLv2+ and LGPLv2+
 Group:		Networking/Other
-Url:		http://pam-mount.sourceforge.net/
+Url:		https://pam-mount.sourceforge.net/
 Source0:	http://prdownloads.sourceforge.net/pam-mount/%{name}-%{version}.tar.xz
 BuildRequires:	pam-devel
 BuildRequires:	pkgconfig(glib-2.0)
