@@ -10,6 +10,11 @@ License:	GPLv2+ and LGPLv2+
 Group:		Networking/Other
 Url:		https://pam-mount.sourceforge.net/
 Source0:	http://prdownloads.sourceforge.net/pam-mount/%{name}-%{version}.tar.xz
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pam-devel
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(libcryptsetup)
