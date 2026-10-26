@@ -4,22 +4,21 @@
 
 Summary:	Pluggable Authentication Module for dynamic mounting of remote volumes
 Name:		pam_mount
-Version:	2.16
-Release:	5
+Version:	2.22
+Release:	1
 License:	GPLv2+ and LGPLv2+
 Group:		Networking/Other
-Url:		https://pam-mount.sourceforge.net/
-Source0:	http://prdownloads.sourceforge.net/pam-mount/%{name}-%{version}.tar.xz
+Url:		https://inai.de/projects/pam_mount/
+Source0:	https://inai.de/files/pam_mount/%{name}-%{version}.tar.zst
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libtool-base
 BuildRequires:	slibtool
 BuildRequires:	make
 BuildRequires:	pam-devel
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(libcryptsetup)
-BuildRequires:	pkgconfig(libHX) >= 3.12
-BuildRequires:	pkgconfig(libpcre)
+BuildRequires:	pkgconfig(libHX) >= 4.28
+BuildRequires:	pkgconfig(libpcre2-8)
 BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:	pkgconfig(mount)
 BuildRequires:	pkgconfig(openssl)
@@ -60,16 +59,16 @@ and handle key files.
 install -m0600 config/pam_mount.conf.xml -D %{buildroot}%{_sysconfdir}/security/pam_mount.conf.xml
 
 %files 
-%doc doc/bugs.txt doc/faq.txt doc/todo.txt doc/pam_mount.txt
+%doc doc/bugs.rst doc/faq.txt doc/news.rst doc/todo.txt
 %{_libdir}/security/pam_mount*.so
 %{_sbindir}/pmt-ehd
 %{_sbindir}/pmvarrun
-/sbin/mount.crypt
-/sbin/mount.crypto_LUKS
-/sbin/mount.crypt_LUKS
-/sbin/umount.crypt
-/sbin/umount.crypt_LUKS
-/sbin/umount.crypto_LUKS
+%{_sbindir}/mount.crypt
+%{_sbindir}/mount.crypto_LUKS
+%{_sbindir}/mount.crypt_LUKS
+%{_sbindir}/umount.crypt
+%{_sbindir}/umount.crypt_LUKS
+%{_sbindir}/umount.crypto_LUKS
 %config(noreplace) %{_sysconfdir}/security/%{name}.conf.xml
 %{_mandir}/man8/pam_mount.8*
 %{_mandir}/man8/pmt-ehd.8*
