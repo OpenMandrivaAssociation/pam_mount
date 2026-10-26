@@ -19,6 +19,7 @@ BuildRequires:	pam-devel
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(libcryptsetup)
 BuildRequires:	pkgconfig(libHX) >= 3.12
+BuildRequires:	pkgconfig(libpcre)
 BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:	pkgconfig(mount)
 BuildRequires:	pkgconfig(openssl)
